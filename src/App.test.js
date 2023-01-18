@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { logRoles } from "@testing-library/react";
 import App from "./App";
+import { replaceColorName } from "./App";
 
 test("초기 버튼의 색상이 올바른지 확인하고 버튼을 클릭한다.", () => {
     render(<App />);
@@ -67,4 +68,18 @@ test("버튼 비활성화시 버튼이 회색으로 변한다", () => {
 
     fireEvent.click(checkbox);
     expect(colorButton).toHaveStyle({ backgroundColor: "blue" });
+});
+
+describe("카멜케이스 대문자 앞에 공백을 넣는다", () => {
+    test("Works for no inner capital letters", () => {
+        expect(replaceColorName("Red")).toBe("Red");
+    });
+    test("Works for one inner capital letter", () => {
+        expect(replaceColorName("MidnightBlue")).toBe("Midnight Blue");
+    });
+    test("Works for multiple inner capital letters", () => {
+        expect(replaceColorName("MidnightVioletBlue")).toBe(
+            "Midnight Violet Blue"
+        );
+    });
 });

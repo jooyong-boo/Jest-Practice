@@ -1,6 +1,10 @@
 import { useState } from "react";
 import "./App.css";
 
+export const replaceColorName = (color) => {
+    return color.replace(/\B([A-Z])\B/g, " $1");
+};
+
 function App() {
     const [buttonColor, setButtonColor] = useState("red");
     const newButtonColor = buttonColor === "red" ? "blue" : "red";
