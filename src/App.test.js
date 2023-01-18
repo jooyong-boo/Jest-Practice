@@ -18,10 +18,31 @@ test("초기 버튼의 색상이 올바른지 확인하고 버튼을 클릭한�
     expect(colorButton).toHaveTextContent("Change to red");
 });
 
-// test("초기 텍스트가 올바르게 표시되야한다.", () => {
-//     render(<App />);
-//     const colorButton = screen.getByRole("button", { name: "Change to blue" });
-//     expect(colorButton).to
-// });
+test("initial conditions", () => {
+    render(<App />);
+    // check that the button starts out enabled
+    const colorButton = screen.getByRole("button", { name: "Change to blue" });
+    expect(colorButton).toBeEnabled();
 
-// test("버튼을 클릭하면 파란색으로 변해야한다.", () => {});
+    // check that the checkbox starts out unchecked
+    const checkbox = screen.getByRole("checkbox");
+    expect(checkbox).not.toBeChecked();
+});
+
+test("체크박스 체크시 버튼 비활성화", () => {
+    render(<App />);
+    const colorButton = screen.getByRole("button", { name: "Change to blue" });
+    expect(colorButton).toBeEnabled();
+    const checkbox = screen.getByRole("checkbox");
+    expect(checkbox).not.toBeChecked();
+
+    // 체크박스 체크시 버튼 비활성화
+    fireEvent.click(checkbox);
+    expect(checkbox).toBeChecked();
+    expect(colorButton).toBeDisabled();
+
+    // 체크박스 체크해제시 버튼 활성화
+    fireEvent.click(checkbox);
+    expect(checkbox).not.toBeChecked();
+    expect(colorButton).toBeEnabled();
+});
