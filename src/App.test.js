@@ -32,8 +32,8 @@ test("initial conditions", () => {
 test("체크박스 체크시 버튼 비활성화", () => {
     render(<App />);
     const colorButton = screen.getByRole("button", { name: "Change to blue" });
+    const checkbox = screen.getByRole("checkbox", { name: "Disable button" });
     expect(colorButton).toBeEnabled();
-    const checkbox = screen.getByRole("checkbox");
     expect(checkbox).not.toBeChecked();
 
     // 체크박스 체크시 버튼 비활성화

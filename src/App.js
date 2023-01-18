@@ -17,9 +17,11 @@ function App() {
             </button>
             <input
                 type="checkbox"
+                id="disable-button-checkbox"
                 defaultChecked={check}
                 onClick={(e) => setCheck(e.target.checked)}
             />
+            <label htmlFor="disable-button-checkbox">Disable button</label>
         </div>
     );
 }
