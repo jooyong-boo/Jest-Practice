@@ -5,24 +5,28 @@ import { replaceColorName } from "./App";
 
 test("초기 버튼의 색상이 올바른지 확인하고 버튼을 클릭한다.", () => {
     render(<App />);
-    const colorButton = screen.getByRole("button", { name: "Change to blue" });
+    const colorButton = screen.getByRole("button", {
+        name: "Change to Midnight Blue",
+    });
     // 색이 올바른지
-    expect(colorButton).toHaveStyle({ backgroundColor: "red" });
+    expect(colorButton).toHaveStyle({ backgroundColor: "MediumVioletRed" });
 
     // 버튼 클릭
     fireEvent.click(colorButton);
 
     // 버튼 색이 파란색으로 변해야한다
-    expect(colorButton).toHaveStyle({ backgroundColor: "blue" });
+    expect(colorButton).toHaveStyle({ backgroundColor: "MidnightBlue" });
 
     // 텍스트가 Change to Red로 변해야한다
-    expect(colorButton).toHaveTextContent("Change to red");
+    expect(colorButton).toHaveTextContent("Change to Medium Violet Red");
 });
 
 test("initial conditions", () => {
     render(<App />);
     // check that the button starts out enabled
-    const colorButton = screen.getByRole("button", { name: "Change to blue" });
+    const colorButton = screen.getByRole("button", {
+        name: "Change to Midnight Blue",
+    });
     expect(colorButton).toBeEnabled();
 
     // check that the checkbox starts out unchecked
@@ -32,7 +36,9 @@ test("initial conditions", () => {
 
 test("체크박스 체크시 버튼 비활성화", () => {
     render(<App />);
-    const colorButton = screen.getByRole("button", { name: "Change to blue" });
+    const colorButton = screen.getByRole("button", {
+        name: "Change to Midnight Blue",
+    });
     const checkbox = screen.getByRole("checkbox", { name: "Disable button" });
     expect(colorButton).toBeEnabled();
     expect(checkbox).not.toBeChecked();
@@ -50,7 +56,9 @@ test("체크박스 체크시 버튼 비활성화", () => {
 
 test("버튼 비활성화시 버튼이 회색으로 변한다", () => {
     render(<App />);
-    const colorButton = screen.getByRole("button", { name: "Change to blue" });
+    const colorButton = screen.getByRole("button", {
+        name: "Change to Midnight Blue",
+    });
     const checkbox = screen.getByRole("checkbox", { name: "Disable button" });
 
     fireEvent.click(checkbox);
@@ -60,14 +68,14 @@ test("버튼 비활성화시 버튼이 회색으로 변한다", () => {
     expect(colorButton).toHaveStyle({ backgroundColor: "grey" });
 
     fireEvent.click(checkbox);
-    expect(colorButton).toHaveStyle({ backgroundColor: "red" });
+    expect(colorButton).toHaveStyle({ backgroundColor: "MediumVioletRed" });
 
     fireEvent.click(colorButton);
     fireEvent.click(checkbox);
     expect(colorButton).toHaveStyle({ backgroundColor: "grey" });
 
     fireEvent.click(checkbox);
-    expect(colorButton).toHaveStyle({ backgroundColor: "blue" });
+    expect(colorButton).toHaveStyle({ backgroundColor: "MidnightBlue" });
 });
 
 describe("카멜케이스 대문자 앞에 공백을 넣는다", () => {
@@ -80,6 +88,11 @@ describe("카멜케이스 대문자 앞에 공백을 넣는다", () => {
     test("Works for multiple inner capital letters", () => {
         expect(replaceColorName("MidnightVioletBlue")).toBe(
             "Midnight Violet Blue"
+        );
+    });
+    test("Works for multiple inner capital letter", () => {
+        expect(replaceColorName("MidnightGreenBlue")).toBe(
+            "Midnight Green Blue"
         );
     });
 });

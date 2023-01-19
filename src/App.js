@@ -6,9 +6,11 @@ export const replaceColorName = (color) => {
 };
 
 function App() {
-    const [buttonColor, setButtonColor] = useState("red");
-    const newButtonColor = buttonColor === "red" ? "blue" : "red";
+    const [buttonColor, setButtonColor] = useState("MediumVioletRed");
     const [check, setCheck] = useState(false);
+
+    const newButtonColor =
+        buttonColor === "MediumVioletRed" ? "MidnightBlue" : "MediumVioletRed";
 
     return (
         <div>
@@ -17,7 +19,7 @@ function App() {
                 onClick={() => setButtonColor(newButtonColor)}
                 disabled={check}
             >
-                Change to {newButtonColor}
+                Change to {replaceColorName(newButtonColor)}
             </button>
             <input
                 type="checkbox"
