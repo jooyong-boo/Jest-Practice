@@ -21,6 +21,7 @@ const SummaryForm = () => {
             </OverlayTrigger>
         </span>
     );
+
     return (
         <Form>
             <Form.Group>
